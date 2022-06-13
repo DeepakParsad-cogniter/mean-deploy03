@@ -3,8 +3,13 @@
   "version": "1.0.0",
   "description": "This is for Learning Purpose",
   "main": "server.js",
+  "engines": {
+    "node": "8.9.2"
+  },
   "scripts": {
-    "test": "No test"
+    "test": "No test",
+    "start": "node server.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
   "author": "Prince Kumar",
   "license": "ISC",

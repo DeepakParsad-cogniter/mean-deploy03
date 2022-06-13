@@ -3,7 +3,9 @@ var express = require('express');
 var app = express();
 var mysql = require('mysql');
 const cros = require('cors');
+const path = require("path");
 const nodemailer = require('nodemailer');
+require("dotenv").config();
 var con = mysql.createConnection({
 	host: "localhost",
 	user: "root",
@@ -13,6 +15,7 @@ var con = mysql.createConnection({
 /* User List API */
 app.use(cros());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "client", "build")));
 /** Delete User */
 app.get('/edituser/:id', function (req, res) {
 	con.query("SELECT * FROM customers where id = '"+req.params.id+"'", function (err, result, fields) {
@@ -61,6 +64,9 @@ app.post('/adduser',function(req,res){
 		if (err) throw err;
 		console.log("1 record inserted");
 	});
+});
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "tutorialteacher", "build", "index.html"));
 });
 /* Create Server */
 var server = app.listen(8081, function () {

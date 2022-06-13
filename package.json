@@ -9,7 +9,7 @@
   "scripts": {
     "test": "No test",
     "start": "node server.js",
-    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+    "heroku-postbuild": "cd tutorialteacher && npm install --only=dev && npm install && npm run build"
   },
   "author": "Prince Kumar",
   "license": "ISC",

@@ -6,7 +6,6 @@
   "scripts": {
     "test": "No test",
     "start": "node server.js",
-    "preinstall": "npm install -g angular-cli",
     "heroku-postbuild": "cd tutorialteacher && npm install --only=dev && npm install && npm run build"
   },
   "engines": {

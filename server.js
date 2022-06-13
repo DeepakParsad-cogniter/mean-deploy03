@@ -42,12 +42,12 @@ app.delete('/deleteuser/:id', function (req, res) {
 	});
 })
 /** User list */
-app.get('/', function (req, res) {
-	con.query("SELECT * FROM customers", function (err, result, fields) {
-		if (err) throw err;
-		res.send(result);
-	});
-})
+// app.get('/', function (req, res) {
+// 	con.query("SELECT * FROM customers", function (err, result, fields) {
+// 		if (err) throw err;
+// 		res.send(result);
+// 	});
+// })
 /* add User */
 app.post('/adduser',function(req,res){
 	var name = req.body.name;
@@ -69,8 +69,13 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "tutorialteacher", "build", "index.html"));
 });
 /* Create Server */
-var server = app.listen(8081, function () {
-	var host = server.address().address
-	var port = server.address().port
-	console.log("Example app listening at http://%s:%s", host, port)
-})
+// var server = app.listen(8081, function () {
+// 	var host = server.address().address
+// 	var port = server.address().port
+// 	console.log("Example app listening at http://%s:%s", host, port)
+// });
+
+const port = process.env.PORT || 8081;
+app.listen(port, () => {
+    console.log("Listening on " + port);
+});

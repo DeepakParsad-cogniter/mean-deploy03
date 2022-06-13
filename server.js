@@ -3,16 +3,19 @@ var express = require('express');
 var app = express();
 var mysql = require('mysql');
 const cros = require('cors');
+const path = require("path");
 const nodemailer = require('nodemailer');
-var con = mysql.createConnection({
-	host: "localhost",
-	user: "root",
-	password: "",
-	database: "mydb"
-});
+require("dotenv").config();
+// var con = mysql.createConnection({
+// 	host: "localhost",
+// 	user: "root",
+// 	password: "",
+// 	database: "mydb"
+// });
 /* User List API */
 app.use(cros());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "client", "build")));
 /** Delete User */
 app.get('/edituser/:id', function (req, res) {
 	con.query("SELECT * FROM customers where id = '"+req.params.id+"'", function (err, result, fields) {
@@ -39,12 +42,12 @@ app.delete('/deleteuser/:id', function (req, res) {
 	});
 })
 /** User list */
-app.get('/', function (req, res) {
-	con.query("SELECT * FROM customers", function (err, result, fields) {
-		if (err) throw err;
-		res.send(result);
-	});
-})
+// app.get('/', function (req, res) {
+// 	con.query("SELECT * FROM customers", function (err, result, fields) {
+// 		if (err) throw err;
+// 		res.send(result);
+// 	});
+// })
 /* add User */
 app.post('/adduser',function(req,res){
 	var name = req.body.name;
@@ -62,9 +65,17 @@ app.post('/adduser',function(req,res){
 		console.log("1 record inserted");
 	});
 });
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "tutorialteacher", "build", "index.html"));
+});
 /* Create Server */
-var server = app.listen(8081, function () {
-	var host = server.address().address
-	var port = server.address().port
-	console.log("Example app listening at http://%s:%s", host, port)
-})
+// var server = app.listen(8081, function () {
+// 	var host = server.address().address
+// 	var port = server.address().port
+// 	console.log("Example app listening at http://%s:%s", host, port)
+// });
+
+const port = process.env.PORT || 8081;
+app.listen(port, () => {
+    console.log("Listening on " + port);
+});

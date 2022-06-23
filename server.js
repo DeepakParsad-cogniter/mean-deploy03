@@ -15,7 +15,7 @@ require("dotenv").config();
 /* User List API */
 app.use(cros());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "client", "build")));
+app.use(express.static(path.join(__dirname, "client", "dist")));
 /** Delete User */
 app.get('/edituser/:id', function (req, res) {
 	con.query("SELECT * FROM customers where id = '"+req.params.id+"'", function (err, result, fields) {
@@ -65,7 +65,7 @@ app.post('/adduser',function(req,res){
 		console.log("1 record inserted");
 	});
 });
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "tutorialteacher", "dist/tutorialteacher", "index.html"));
 });
 /* Create Server */

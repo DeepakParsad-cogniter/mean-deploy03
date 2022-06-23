@@ -66,7 +66,7 @@ app.post('/adduser',function(req,res){
 	});
 });
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "tutorialteacher", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "tutorialteacher", "dist/tutorialteacher", "index.html"));
 });
 /* Create Server */
 // var server = app.listen(8081, function () {

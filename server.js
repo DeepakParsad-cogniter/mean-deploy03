@@ -15,7 +15,7 @@ require("dotenv").config();
 /* User List API */
 app.use(cros());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "client", "dist")));
+app.use(express.static(path.join(__dirname, "tutorialteacher", "dist")));
 /** Delete User */
 app.get('/edituser/:id', function (req, res) {
 	con.query("SELECT * FROM customers where id = '"+req.params.id+"'", function (err, result, fields) {
